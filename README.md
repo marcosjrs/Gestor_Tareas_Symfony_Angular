@@ -20,5 +20,7 @@ Pasos seguidos:
 
 4. Comprobación de que está funcionando correctamente, arrancando apache y mysql y luego accediendo a: http://localhost/angular/gestor-tareas-symfony-angular/symfony/web/
 
+5. Añadimos la dependencia de "firebase/php-jwt" en el composer.json, para futuras utilizaciones de JWT cuando creemos la parte de la autentificación. Y tambien añadimos la dependencia de "knplabs/knp-paginator-bundle", para cuando creemos la entrega páginada de datos. Tras añadir estas dependencias, nos dirigimos desde la consola a la carpeta symfony (ubicación del composer.json), y ejecutamos ```composer update``` 
+
 
 
