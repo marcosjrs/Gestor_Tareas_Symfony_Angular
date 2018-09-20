@@ -26,16 +26,27 @@
 
 	Tras lo cual, tuvimos que hacer algunos retoques (por "bugs" con la versión utilizada de symfony):
 
-- Sustituir el contenido del "psr-4" del composer.json, por: ```"psr-4": { "AppBundle\\": "src/AppBundle", "BackendBundle\\": "src/BackendBundle" }```
+	- Sustituir el contenido del "psr-4" del composer.json, por: ```"psr-4": { "AppBundle\\": "src/AppBundle", "BackendBundle\\": "src/BackendBundle" }```
 
-- Ejecutar el comando: composer update
+	- Ejecutar el comando: composer update
 
-- Modificar la llamada de renderización en el DefaultContoller del bundle creado (ya que de otra forma no encontraba el twig): return $this->render('@Backend/Default/index.html.twig');
+	- Modificar la llamada de renderización en el DefaultContoller del bundle creado (ya que de otra forma no encontraba el twig): return $this->render('@Backend/Default/index.html.twig');
 
 7. Eliminamos  la carga de la vista del nuevo bundle mediante la ruta principal ("app_dev.php/"), eliminando de del routing.yml el código: 
 	```
 	resource: "@BackendBundle/Resources/config/routing.yml"
 	prefix:   /
 	```
+8. Generar las entidades de las tablas. 
+	- Generamos la configuración en yml, que modificaremos luego, para crear las entidades "finales": 
 
+		```php .\bin\console doctrine:mapping:import BackendBundle yml```
+
+	- Modificamos los dos orm que acaba de generar, llamándolos de forma individual Task.orm.yml y User.orm.yml. Y dentro de ellos tambien utilizamos el singular (en plural solo quedaría el valor de "table" y el alias de las foreign keys dentro de los archivos). Tras esto ejecutamos, para que nos genere las entidades Task y User:
+
+		```php bin/console doctrine:schema:update --force```
+
+		```composer update```
+
+		```php .\bin\console doctrine:generate:entities BackendBundle```
 
