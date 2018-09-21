@@ -44,8 +44,6 @@ class DefaultController extends Controller
         $users = $repoUser->findAll();
         $count = count($users);
 
-        echo $this->get(Helpers::class)->jsonParser($users);
-
-        die();//para que se interrumpa, y no requiera una "vista"
+        return  $this->get(Helpers::class)->jsonParser($users);
     }
 }
