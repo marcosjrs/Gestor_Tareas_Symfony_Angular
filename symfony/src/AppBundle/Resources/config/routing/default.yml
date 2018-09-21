@@ -3,7 +3,17 @@ default_index:
   defaults: { _controller: AppBundle:Default:index }
   methods: GET
 
+default_login:
+  path:     /login
+  defaults: { _controller: AppBundle:Default:login }
+  methods: POST
+
 default_test:
   path:     /testadduser
   defaults: { _controller: AppBundle:Default:testadduser }
   methods: GET
+
+default_testchecktoken:
+  path:     /testchecktoken
+  defaults: { _controller: AppBundle:Default:testchecktoken }
+  methods: POST
