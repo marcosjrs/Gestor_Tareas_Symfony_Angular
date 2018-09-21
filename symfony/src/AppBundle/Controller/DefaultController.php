@@ -11,7 +11,6 @@ use AppBundle\Service\Helpers;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
      */
     public function indexAction(Request $request)
     {
@@ -24,7 +23,6 @@ class DefaultController extends Controller
     /**
      * Prueba de acceso a la "BBDD", añadiendo un usuario e imprimiendo el numero de usuarios.
      * Accesible mediante una url similar a http://localhost/gestor-tareas-symfony-angular/symfony/web/app_dev.php/testadduser
-     * @Route("/testadduser", name="testadduser")
      */
     public function testadduserAction()
     {
