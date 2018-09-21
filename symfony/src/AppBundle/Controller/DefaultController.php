@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use BackendBundle\Entity\User;
+use AppBundle\Service\Helpers;
 
 class DefaultController extends Controller
 {
@@ -43,7 +44,7 @@ class DefaultController extends Controller
         $users = $repoUser->findAll();
         $count = count($users);
 
-        echo "Numero de usuarios: $count ";
+        echo $this->get(Helpers::class)->jsonParser($users);
 
         die();//para que se interrumpa, y no requiera una "vista"
     }
