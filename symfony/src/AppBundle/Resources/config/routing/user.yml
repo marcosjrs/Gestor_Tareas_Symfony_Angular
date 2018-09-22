@@ -1,0 +1,11 @@
+# En routing.yml, el prefix de esta ruta es user/, y los path aquí sons a partir de este prefix.
+# Por ejemplo, user_index si tiene un path /, la ruta final será:  user/
+user_index:
+  path:     /
+  defaults: { _controller: AppBundle:User:index }
+  methods: GET
+
+user_new:
+  path:     /new
+  defaults: { _controller: AppBundle:User:new }
+  methods: GET
