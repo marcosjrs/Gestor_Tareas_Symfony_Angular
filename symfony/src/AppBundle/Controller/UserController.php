@@ -72,4 +72,59 @@ class UserController extends Controller
         return  $this->get(Helpers::class)->jsonParser($data);
     }
 
+    public function editAction(Request $request){
+        //Recogida de parametro json que deberá contener todos los datos.
+        $authorization = $request->get('authorization',null);
+        $helpers = $this->get(Helpers::class);
+        $auth = false;
+        if(is_null($authorization)){
+            $data = array('status'=>'error', 'data'=>'Faltan parámetro "authorization"');
+        }else{
+            $auth = $this->get(JwtAuth::class)->checkToken($authorization,true);
+        }
+        if($auth){
+            //Recogida de parametro json que deberá contener todos los datos.
+            $json = $request->get('json',null);
+            if(is_null($json)){
+                $data = array('status'=>'error', 'code'=>400, 'data'=>'Faltan parámetro "json"');
+            }else{
+                //recogemos los atributos del parametro 'json'
+                $params = json_decode($json);
+                $email = (isset($params->email)) ? $params->email : null;
+                $password = (isset($params->password)) ? $params->password : null;
+                $name = (isset($params->name)) ? $params->name : null;
+                $surname = (isset($params->surname)) ? $params->surname : null;
+
+                //verificamos si le pertenece el email  con ese token  
+                $validData = $email && ($auth->email == $email);
+
+                if($validData){ 
+                    $em = $this->getDoctrine()->getManager();
+                    $repoUser = $em->getRepository("BackendBundle:User");
+                    $existsUser = $repoUser->findOneBy(array( "email"=>$email )); //check que siga existiendo
+                    if($existsUser){
+                        //actualizamos el usuario        
+                        if($password) $existsUser->setPassword($password);   
+                        if($name)  $existsUser->setName($name);   
+                        if($surname)  $existsUser->setSurname($surname);    
+
+                        $em->persist($existsUser);
+                        $em->flush();
+                        $data = array('status'=>'success', 'code'=>200, 
+                                'data'=>'Usuario actualizado correctamente', 'user'=>$existsUser);
+                    }else{
+                        $data = array('status'=>'error', 'code'=>400, 'data'=>'Ese usuario ya no existe');
+                    } 
+                }else{
+                    $data = array('status'=>'error', 'code'=>400, 'data'=>'Ese email no pertenece a ese token');
+                }            
+            }
+        }else{
+            $data = array('status'=>'error', 'code'=>400, 'data'=>'authorization no válido');
+        }
+
+        
+        return  $this->get(Helpers::class)->jsonParser($data);
+    }
+
 }

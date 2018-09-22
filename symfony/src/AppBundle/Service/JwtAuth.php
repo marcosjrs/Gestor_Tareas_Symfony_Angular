@@ -43,6 +43,7 @@ class JwtAuth{
         $auth = false;
         try{
             $decoded = JWT::decode($jwt, $this->key, array('HS256'));
+            $auth = true;
         }catch(\UnexpectedValueException $error ){
             $auth = false;
         }catch(\DomainException $error ){
@@ -50,7 +51,8 @@ class JwtAuth{
         }catch(\InvalidArgumentException $error ){
             $auth = false;
         }
-        if(is_object($decoded) && isset($decoded->sub)){
+
+        if($auth && is_object($decoded) && isset($decoded->sub)){
             return $getIdentity ? $decoded : true;
         }else{
             return false;
