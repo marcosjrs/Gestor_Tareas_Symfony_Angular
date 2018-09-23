@@ -49,7 +49,7 @@ class DefaultController extends Controller
             $signValid = false;
             if(count($errorsValidations) == 0 && $password != null){
                 $jwtAuth = $this->get(JwtAuth::class);
-                $data = $jwtAuth->signup($email, $password);
+                $data = $jwtAuth->signup($email, hash('sha256',$password));
                 if($data) $signValid = true;                 
             }
             

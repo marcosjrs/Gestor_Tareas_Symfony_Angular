@@ -49,7 +49,7 @@ class UserController extends Controller
                 //creamos el usuario               
                 $user = new User();
                 $user->setEmail($email);   
-                $user->setPassword($password);   
+                $user->setPassword(hash('sha256',$password));   
                 $user->setName($name);   
                 $user->setSurname($surname);   
                 $user->setCreatedAt($createdAt);   
@@ -104,7 +104,7 @@ class UserController extends Controller
                     $existsUser = $repoUser->findOneBy(array( "email"=>$email )); //check que siga existiendo
                     if($existsUser){
                         //actualizamos el usuario        
-                        if($password) $existsUser->setPassword($password);   
+                        if($password) $existsUser->setPassword(hash('sha256',$password));   
                         if($name)  $existsUser->setName($name);   
                         if($surname)  $existsUser->setSurname($surname);    
 
