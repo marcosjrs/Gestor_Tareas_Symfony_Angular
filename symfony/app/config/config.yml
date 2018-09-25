@@ -68,5 +68,21 @@ swiftmailer:
     spool: { type: memory }
 
 sensio_framework_extra:
-   router:
+    router:
         annotations: false
+
+knp_paginator:
+#rango de paginas
+    page_range: 5
+    default_options:
+        #nombre del parametro que se visualizará en la url para numero de pagina, el campo por el que ordenar, .....
+        page_name: page
+        sort_field_name: sort
+        sort_direction_name: direction
+        distinct: true
+    template:
+        #templates, en este caso utilizamos unas que vienene por defecto con el bundle (en \vendor\knplabs\knp-paginator-bundle\Resources\views\Pagination)
+        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig
+        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig
+
+    
