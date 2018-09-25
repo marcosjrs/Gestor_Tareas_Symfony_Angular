@@ -97,4 +97,46 @@ class TaskController extends Controller
         return  $this->get(Helpers::class)->jsonParser($data);
     }
 
+    /**
+     * Devuelve las tareas de forma paginada, de mas recientes a más antiguas.
+     * Parametro opcional: page
+     * Ejemplo:  http://localhost/gestor-tareas-symfony-angular/symfony/web/app_dev.php/task/tasks?page=2
+     */
+    public function tasksAction(Request $request){
+        //Recogida de parametro json que deberá contener todos los datos.
+        $authorization = $request->get('authorization',null);
+        $helpers = $this->get(Helpers::class);
+        $auth = false;
+        if(is_null($authorization)){
+            $data = array('status'=>'error', 'data'=>'Faltan parámetro "authorization"');
+        }else{
+            $auth = $this->get(JwtAuth::class)->checkToken($authorization,true);
+        }
+        if($auth){
+            $em = $this->getDoctrine()->getManager();
+            $dql = "SELECT t FROM  BackendBundle:Task t WHERE t.user = {$auth->sub} ORDER BY t.id DESC";
+            $query = $em->createQuery($dql);
+
+            $page = $request->query->getInt('page',1);//recogemos el parametro del la url llamada "page", por defecto valor  1
+            $paginator = $this->get('knp_paginator');//Recogemos la configuración
+            $items_por_pagina = 10;
+            $paginacion = $paginator->paginate($query,$page,$items_por_pagina);
+
+            $total_items_count = $paginacion->getTotalItemCount();//numero de elementos que salen en esta query, porque en la ultima no tienen por que ser 10
+            
+            $data = array('status'=>'success', 'code'=>200, 
+                        'total_items_count'=>$total_items_count,
+                        'current_page'=>$page,
+                        'items_per_page'=>$items_por_pagina,
+                        'total_pages'=>ceil($total_items_count/$items_por_pagina),
+                        'data' => $paginacion );
+
+            
+        }else{
+            $data = array('status'=>'error', 'code'=>400, 'data'=>'authorization no válido');
+        } 
+
+        return  $this->get(Helpers::class)->jsonParser($data);
+    }
+
 }
