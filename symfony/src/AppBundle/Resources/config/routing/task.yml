@@ -16,6 +16,6 @@ task_edit:
   methods: POST
 
 task_tasks:
-  path:     /tasks
-  defaults: { _controller: AppBundle:Task:tasks}
+  path:     /list
+  defaults: { _controller: AppBundle:Task:list}
   methods: POST

@@ -102,7 +102,7 @@ class TaskController extends Controller
      * Parametro opcional: page
      * Ejemplo:  http://localhost/gestor-tareas-symfony-angular/symfony/web/app_dev.php/task/tasks?page=2
      */
-    public function tasksAction(Request $request){
+    public function listAction(Request $request){
         //Recogida de parametro json que deberá contener todos los datos.
         $authorization = $request->get('authorization',null);
         $helpers = $this->get(Helpers::class);
