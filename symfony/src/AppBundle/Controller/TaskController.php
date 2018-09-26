@@ -139,10 +139,8 @@ class TaskController extends Controller
         return  $this->get(Helpers::class)->jsonParser($data);
     }
     /**
-     * Devuelve las tareas de forma paginada, de mas recientes a más antiguas.
-     * Parametro opcional: page
-     * Ejemplo:  http://localhost/gestor-tareas-symfony-angular/symfony/web/app_dev.php/task/tasks?page=2
-     */
+     * Devuelve la información de una tarea determinada, siempre y cuando sea del usuario logado.
+     * */
     public function detailAction(Request $request, $id){
         //Recogida de parametro json que deberá contener todos los datos.
         $authorization = $request->get('authorization',null);
@@ -162,6 +160,68 @@ class TaskController extends Controller
             }else{
                 $data = array('status'=>'error', 'code'=>400, 'data'=>'No se ha encontrado una tarea para ese id y usuario');
             }            
+        }else{
+            $data = array('status'=>'error', 'code'=>400, 'data'=>'authorization no válido');
+        } 
+
+        return  $this->get(Helpers::class)->jsonParser($data);
+    }
+
+    /**
+     * Busqueda de tareas del usuario logado
+     * Parametros posibles en request: 
+     * filter: 1 para "new" .  2 para "todo". 3 o cualquier otro valor para "finished" 
+     * order:  2 o vacio  para descendente. Cualquier otro valor para ascendente
+     */
+    public function searchAction(Request $request, $search = null){
+        //Recogida de parametro json que deberá contener todos los datos.
+        $authorization = $request->get('authorization',null);
+        $helpers = $this->get(Helpers::class);
+        $auth = false;
+        if(is_null($authorization)){
+            $data = array('status'=>'error', 'data'=>'Faltan parámetro "authorization"');
+        }else{
+            $auth = $this->get(JwtAuth::class)->checkToken($authorization,true);
+        }
+        if($auth){
+            //recuperación del parametro search, filter y el order del reques (no de url)
+            $filter = $request->get('filter',null);
+            if(empty($filter)){
+                $filter = null;
+            }elseif($filter==1){
+                $filter = 'new';
+            }else if($filter==2){
+                $filter = 'todo';
+            }else{
+                $filter=='finished';
+            }
+
+            $order = $request->get('order','ASC');//Ascendente por defecto
+            if( empty($order) || $order==2){
+                $order='DESC';
+            }else{
+                $order='ASC';
+            }
+
+            $em = $this->getDoctrine()->getManager();
+            $taskRepo = $em->getRepository("BackendBundle:Task");
+            if(!empty($search)){
+                $dql = "SELECT t FROM  BackendBundle:Task t "
+                        ."WHERE t.user = {$auth->sub} AND (t.title LIKE :search OR t.description LIKE :search) ";
+            }else{
+                $dql = "SELECT t FROM  BackendBundle:Task t WHERE t.user = {$auth->sub} ";
+            }
+
+            if(!empty($filter)){
+                $dql .= "AND t.status = :filter ";
+            }
+            $dql .= "ORDER BY t.id {$order}";
+            $query = $em->createQuery($dql);
+
+            if(!empty($filter)){    $query->setParameter('filter',"$filter");       }
+            if(!empty($search)){    $query->setParameter('search',"%$search%");     }
+
+            $data = array('status'=>'success', 'code'=>200, 'data'=>$query->getResult());          
         }else{
             $data = array('status'=>'error', 'code'=>400, 'data'=>'authorization no válido');
         } 
