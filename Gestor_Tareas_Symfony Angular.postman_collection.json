@@ -1,0 +1,311 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Gestor Tareas Symfony Angular",
+		"_postman_id": "905824ac-f507-f9be-d28a-b8ec60d3bc0e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "[User] new",
+			"request": {
+				"url": "http://localhost/gestor-tareas-symfony-angular/symfony/web/app_dev.php/user/new",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "json",
+							"value": "{\"email\":\"marcos@email.com\", \"password\":\"1234\", \"name\":\"marcos\",\"surname\":\"jrs\"}",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[User] edit",
+			"request": {
+				"url": "http://localhost/gestor-tareas-symfony-angular/symfony/web/app_dev.php/user/edit",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "authorization",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQxLCJlbWFpbCI6Im1hcmNvc0BlbWFpbC5jb20iLCJuYW1lIjoibWFyY29zIiwic3VybmFtZSI6ImpycyIsImlhdCI6MTUzNzY4Nzc4MiwiZXhwIjoxNTM4MjkyNTgyfQ.bu25d7Q65RZ6DVPB-C0zD-ugjcksSEhFQJNYw1SQiZQ",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "json",
+							"value": "{\"email\":\"marcos@email.com\", \"password\":\"1234\", \"name\":\"marcos\",\"surname\":\"j rs\"}",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[Default] login",
+			"request": {
+				"url": "http://localhost/gestor-tareas-symfony-angular/symfony/web/app_dev.php/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "json",
+							"value": "{\"email\":\"marcos@email.com\", \"password\":\"1234\"}",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[Default] testchecktoken",
+			"request": {
+				"url": "http://localhost/gestor-tareas-symfony-angular/symfony/web/app_dev.php/testchecktoken",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "authorization",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImVtYWlsIjoibWFyY29zM0BlbWFpbC5jb20iLCJuYW1lIjoiTWFyY29zMyIsInN1cm5hbWUiOiJSUyIsImlhdCI6MTUzNzU2MzQwNCwiZXhwIjoxNTM4MTY4MjA0fQ.dlx9RxkBFk4u6DSXFpO6WOO5J_Njpg6POMydu2YLXKE",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[Task] new task",
+			"request": {
+				"url": "http://localhost/gestor-tareas-symfony-angular/symfony/web/app_dev.php/task/new",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "json",
+							"value": "{\"email\":\"marcos@email.com\", \"title\":\"tarea 22\", \"description\":\"descripcion de tarea 1\",\"status\":\"to-do\"}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "authorization",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQxLCJlbWFpbCI6Im1hcmNvc0BlbWFpbC5jb20iLCJuYW1lIjoibWFyY29zIiwic3VybmFtZSI6ImpycyIsImlhdCI6MTUzNzY4Nzc4MiwiZXhwIjoxNTM4MjkyNTgyfQ.bu25d7Q65RZ6DVPB-C0zD-ugjcksSEhFQJNYw1SQiZQ",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[Task] edit task 1",
+			"request": {
+				"url": "http://localhost/gestor-tareas-symfony-angular/symfony/web/app_dev.php/task/edit/1",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "json",
+							"value": "{\"email\":\"marcos@email.com\", \"title\":\"Tarea 1\", \"description\":\"Descripcion de tarea 1\",\"status\":\"to-do\"}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "authorization",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQxLCJlbWFpbCI6Im1hcmNvc0BlbWFpbC5jb20iLCJuYW1lIjoibWFyY29zIiwic3VybmFtZSI6ImpycyIsImlhdCI6MTUzNzY4Nzc4MiwiZXhwIjoxNTM4MjkyNTgyfQ.bu25d7Q65RZ6DVPB-C0zD-ugjcksSEhFQJNYw1SQiZQ",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[Task] listar tasks",
+			"request": {
+				"url": "http://localhost/gestor-tareas-symfony-angular/symfony/web/app_dev.php/task/tasks",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "authorization",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQxLCJlbWFpbCI6Im1hcmNvc0BlbWFpbC5jb20iLCJuYW1lIjoibWFyY29zIiwic3VybmFtZSI6ImpycyIsImlhdCI6MTUzNzY4Nzc4MiwiZXhwIjoxNTM4MjkyNTgyfQ.bu25d7Q65RZ6DVPB-C0zD-ugjcksSEhFQJNYw1SQiZQ",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[Task] search tasks",
+			"request": {
+				"url": "http://localhost/gestor-tareas-symfony-angular/symfony/web/app_dev.php/task/search/tarea 3",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "authorization",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQxLCJlbWFpbCI6Im1hcmNvc0BlbWFpbC5jb20iLCJuYW1lIjoibWFyY29zIiwic3VybmFtZSI6ImpycyIsImlhdCI6MTUzNzY4Nzc4MiwiZXhwIjoxNTM4MjkyNTgyfQ.bu25d7Q65RZ6DVPB-C0zD-ugjcksSEhFQJNYw1SQiZQ",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "filter",
+							"value": "2",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "order",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[Task] detalle de una tarea",
+			"request": {
+				"url": "http://localhost/gestor-tareas-symfony-angular/symfony/web/app_dev.php/task/detail/14",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "authorization",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQxLCJlbWFpbCI6Im1hcmNvc0BlbWFpbC5jb20iLCJuYW1lIjoibWFyY29zIiwic3VybmFtZSI6ImpycyIsImlhdCI6MTUzNzY4Nzc4MiwiZXhwIjoxNTM4MjkyNTgyfQ.bu25d7Q65RZ6DVPB-C0zD-ugjcksSEhFQJNYw1SQiZQ",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "[Task] borrar una tarea",
+			"request": {
+				"url": "http://localhost/gestor-tareas-symfony-angular/symfony/web/app_dev.php/task/remove/16",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "authorization",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQxLCJlbWFpbCI6Im1hcmNvc0BlbWFpbC5jb20iLCJuYW1lIjoibWFyY29zIiwic3VybmFtZSI6ImpycyIsImlhdCI6MTUzNzY4Nzc4MiwiZXhwIjoxNTM4MjkyNTgyfQ.bu25d7Q65RZ6DVPB-C0zD-ugjcksSEhFQJNYw1SQiZQ",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
