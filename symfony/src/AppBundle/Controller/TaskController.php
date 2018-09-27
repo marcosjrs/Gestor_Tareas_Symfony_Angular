@@ -229,4 +229,33 @@ class TaskController extends Controller
         return  $this->get(Helpers::class)->jsonParser($data);
     }
 
+    public function removeAction(Request $request, $id=null){
+        //Recogida de parametro json que deberá contener todos los datos.
+        $authorization = $request->get('authorization',null);
+        $helpers = $this->get(Helpers::class);
+        $auth = false;
+        if(is_null($authorization)){
+            $data = array('status'=>'error', 'data'=>'Faltan parámetro "authorization"');
+        }else{
+            $auth = $this->get(JwtAuth::class)->checkToken($authorization,true);
+        }
+        if($auth){
+            $em = $this->getDoctrine()->getManager();
+            $taskRepo = $em->getRepository("BackendBundle:Task");
+            $task = $taskRepo->find($id);
+            if($task && is_object($task) && $auth->sub == $task->getUser()->getId()){
+                $id = $task->getId();
+                $em->remove($task);
+                $em->flush();
+                $data = array('status'=>'success', 'code'=>200, 'data'=>["id"=>$id]);
+            }else{
+                $data = array('status'=>'error', 'code'=>400, 'data'=>'No se ha encontrado una tarea para ese id y usuario');
+            }            
+        }else{
+            $data = array('status'=>'error', 'code'=>400, 'data'=>'authorization no válido');
+        } 
+
+        return  $this->get(Helpers::class)->jsonParser($data);
+    }
+
 }
