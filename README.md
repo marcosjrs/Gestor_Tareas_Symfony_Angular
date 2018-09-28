@@ -50,3 +50,16 @@
 
 		```php .\bin\console doctrine:generate:entities BackendBundle```
 
+
+## Pasos iniciales para la parte de angular
+
+1. Instalamos el CLI de Angular. Luego nos situamos en la carpeta del proyecto y creamos el proyecto de angular (con ```ng new``` ), en este caso se le llamó "angular". Y para comprobar, una vez instalado, una vez dentro del directorio del proyecto, arrancamos el proyecto con el ```npm start```, y finalmente abrimos el navegador en ```http://localhost:4200/``` para ver la pantalla de "bienvenida" del proyecto.
+	```
+	npm install -g @angular/cli
+	ng new angular
+	npm start
+	```
+
+
+
+
