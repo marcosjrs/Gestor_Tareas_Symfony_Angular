@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login.component';
 import { RegisterComponent } from './components/register.component';
+import { AppRoutingModule } from './app.routing'; //contiene RouterModule.forRoot(...rutas...)
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { RegisterComponent } from './components/register.component';
     RegisterComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

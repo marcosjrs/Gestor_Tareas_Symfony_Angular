@@ -59,6 +59,37 @@
 	ng new angular
 	npm start
 	```
+Nota: En nuestro caso era mejor haber hecho ```ng new angular --routing```, para que nos generara automaticamente el archivo de enrutado y lo inyectara en el modulo...
+
+2. Creamos los componentes. Para luego crear una nueva carpeta views a las que llevar las vistas (html y css), actualizando las rutas dentro de los compenentes creados. 
+	```
+	ng g c components/component
+	```
+3. Creando el enrutado. Creamos un archivo  llamado app.routing.ts (u otro nombre), con las rutas configuradas, donde se le indica que componente se debe renderizar con que ruta (path):
+	```
+	import { NgModule } from '@angular/core';
+	import { Routes, RouterModule } from '@angular/router';
+	import {LoginComponent} from './components/login.component';
+	import {RegisterComponent} from './components/register.component';
+
+	const routes: Routes = [
+		{ path: '', component: LoginComponent },
+		{ path: 'login', component: LoginComponent },
+		{ path: 'register', component: RegisterComponent },
+		{ path: '**', component: LoginComponent } //el resto de las rutas
+	];
+
+	@NgModule({
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule]
+	})
+	export class AppRoutingModule { }
+	```
+
+	Luego en el html, "decimos" donde renderizar (en este caso en app.component.html) colocando al etiqueta: 
+	```
+	<router-outlet></router-outlet>
+	```
 
 
 
