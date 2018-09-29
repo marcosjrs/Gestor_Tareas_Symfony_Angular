@@ -91,6 +91,20 @@ Nota: En nuestro caso era mejor haber hecho ```ng new angular --routing```, para
 	<router-outlet></router-outlet>
 	```
 
+## Instalación de jquery y bootstrap
+
+Instalamos mediante npm
+```
+npm install --save jquery
+npm install --save bootstrap
+```
+
+Y ahora en el index.html ya podemos cargar los minificados de dichas librería.
+```
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+```
 
 
 
