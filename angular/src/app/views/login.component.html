@@ -1,3 +1,22 @@
-<p>
-  {{this.title}}
-</p>
+<div class="container login-component mt-3">
+  <div class="row">
+    <div class="col-12 col-sm-8 col-lg-6 ">
+      <h3>{{title}}</h3>
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="form-row mt-2">
+        <p class="col-12">
+          <label>Email:</label>
+          <input type="email" class="form-control" name="email" #email="ngModel" [(ngModel)]="user.email" required>
+          <span *ngIf="!email.valid && email.touched">Email no válido</span>
+        </p>
+        <p class="col-12">
+          <label>Contraseña:</label>
+          <input type="password" class="form-control" name="password" #password="ngModel" [(ngModel)]="user.password" required>
+          <span *ngIf="!password.valid && password.touched">Password no válido</span>
+        </p>
+        <p class="col-12">
+          <input type="submit" class="btn btn-primary" value="Entrar">
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
