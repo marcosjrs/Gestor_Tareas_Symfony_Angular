@@ -12,7 +12,12 @@ class JwtAuth{
         $this->key = 'clave@_secreta1234';
     }
 
-    public function signup($email, $pass){
+    /**
+     * $email : Email
+     * $pass : Contraseña
+     * $getHash: Indica si se quiere o no los datos decodificados; si no, solo se pide el token (conjunto de datos pasados por el JWT::encode)
+     */
+    public function signup($email, $pass, $getHash = null){
         $data = false;
         $user = $this->manager
                     ->getRepository('BackendBundle:User')
@@ -30,6 +35,10 @@ class JwtAuth{
                         "exp" => time() + (7*24*60*60)
                     );  //expira en 7 días. "sub" es como un indice.
             $data = JWT::encode($token, $this->key, 'HS256');//la genera en base a la "clave privada"
+
+            if($getHash){                
+                $data = json_decode(json_encode(JWT::decode($data, $this->key, array('HS256'))),true);
+            }
         }
 
         return $data;

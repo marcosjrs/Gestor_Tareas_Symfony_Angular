@@ -40,6 +40,7 @@ class DefaultController extends Controller
             $params = json_decode($json);
             $email = (isset($params->email)) ? $params->email : null;
             $password = (isset($params->password)) ? $params->password : null;
+            $getHash = (isset($params->getHash)) ? $params->getHash : null;
 
             //verificamos formato email            
             $validatorEmail = new Assert\Email();
@@ -49,7 +50,7 @@ class DefaultController extends Controller
             $signValid = false;
             if(count($errorsValidations) == 0 && $password != null){
                 $jwtAuth = $this->get(JwtAuth::class);
-                $data = $jwtAuth->signup($email, hash('sha256',$password));
+                $data = $jwtAuth->signup($email, hash('sha256',$password),$getHash);
                 if($data) $signValid = true;                 
             }
             
