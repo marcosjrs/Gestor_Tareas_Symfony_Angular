@@ -6,14 +6,16 @@ import { HttpModule, Http } from '@angular/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login.component';
 import { RegisterComponent } from './components/register.component';
-import { AppRoutingModule } from './app.routing'; //contiene RouterModule.forRoot(...rutas...)
+import { AppRoutingModule } from './app.routing';
+import { DefaultComponent } from './components/default.component'; //contiene RouterModule.forRoot(...rutas...)
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    DefaultComponent
   ],
   imports: [
     BrowserModule,

@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
                     console.log(this.token);
                     if(responseToken.status){
                       localStorage.setItem('token', responseToken.json());
+                      window.location.href = "/"
                     }
                   }else{
                     console.log("Get token: Error en servidor")
