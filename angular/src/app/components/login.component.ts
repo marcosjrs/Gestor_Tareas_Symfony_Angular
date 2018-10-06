@@ -62,10 +62,24 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.identity = this.userService.getLocalIdentity();    
-    this.checkLogout();
+    this.checkLogout();//Link de logout -> /login/out . Por tanto se carga este componente y comprobaremos si está intentando un logout. 
+    this.checkUserLogged();// Si ya está logado se redireccionará, ya que esta pantalla no corresponde.    
   }
 
+  /**
+   * Si ya está logado se mostrará el componente correspondiente a "/", ya que esta pantalla no corresponde.
+   */
+  checkUserLogged(){
+    if(this.userService.getLocalIdentity()){
+      this._router.navigate(["/"]);
+    }
+  }
+
+  /**
+   * El link de logout es: /login/out. Por tanto se carga este componente y 
+   * comprobaremos si está intentando un logout, si es así eliminará los datos del localStorage
+   * y redireccionará al login.
+   */
   checkLogout(){
     this._route.params.forEach(element => {
       if(element.action == "out"){
