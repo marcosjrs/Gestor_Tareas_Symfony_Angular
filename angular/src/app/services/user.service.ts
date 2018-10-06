@@ -17,9 +17,18 @@ export class UserService {
     this.url = GLOBAL.url;
   }
 
-  signup(){
-    console.log("signup...");
-    return "signup";
+  signup(dataUserToLogin){
+    let json = JSON.stringify(dataUserToLogin);
+    let params = "json="+json;
+    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});//enviamos como datos de un formulario
+
+    return this._http
+            .post(`${this.url}/login`, params, {headers});
+  }
+
+  getLocalIdentity(){
+    let lSIdentity = localStorage.getItem('identity');
+    return lSIdentity ? JSON.parse(lSIdentity) : null;     
   }
 
 }

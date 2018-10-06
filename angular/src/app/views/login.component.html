@@ -2,6 +2,12 @@
   <div class="row">
     <div class="col-12 col-sm-8 col-lg-6 ">
       <h3>{{title}}</h3>
+      <div class="identity-alert alert alert-success" *ngIf="identity && identity.sub">
+        Identificado correctamente como {{identity.email}}
+      </div>
+      <div class="identity-alert alert alert-danger" *ngIf="identity && identity.data">
+        Email y/o password no válidos
+      </div>
       <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="form-row mt-2">
         <p class="col-12">
           <label>Email:</label>
