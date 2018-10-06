@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { UserService } from '../services/user.service';
+import { EmptyError } from 'rxjs';
 
 @Component({
   selector: 'login',
@@ -33,7 +34,7 @@ export class LoginComponent implements OnInit {
             if(response){
               this.identity = response.json();
               if(response.status){ 
-                     
+
                 localStorage.setItem('identity', response.text()); 
                 
                 //Una vez realizado el login correctamente, obtendremos el token que añadiremos a cada petición.
@@ -61,6 +62,19 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.identity = this.userService.getLocalIdentity();    
+    this.checkLogout();
+  }
+
+  checkLogout(){
+    this._route.params.forEach(element => {
+      if(element.action == "out"){
+        localStorage.removeItem('identity');
+        localStorage.removeItem('token');
+        this.identity = null;
+        this.token = null;
+        window.location.href = "/login";
+      }
+    });
   }
 
 }
