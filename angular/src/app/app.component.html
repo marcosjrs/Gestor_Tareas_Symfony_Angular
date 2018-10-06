@@ -2,7 +2,6 @@
   <div class="col-xs-12 col-md-12 col-lg-10 offset-lg-1">
     <header id="principal-header">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" [routerLink]="['/']">Gestor de tareas</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -15,11 +14,13 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/']">
+              <a class="nav-link" [routerLink]="['/']" *ngIf="identity && identity.sub">
                 <i class="fas fa-plus"></i>
                 Crear tarea
               </a>
             </li>
+          </ul>
+          <ul class="navbar-nav navbar-right"  *ngIf="identity && identity.sub">
             <li class="nav-item">
               <a class="nav-link" [routerLink]="['/']">
                 <i class="fas fa-cogs"></i>
@@ -34,11 +35,11 @@
             </li>
           </ul>
           <u class="navbar-nav navbar-right">
-            <li><a class="nav-link" [routerLink]="['/login']">
+            <li><a class="nav-link" [routerLink]="['/login']"  *ngIf="!identity || !identity.sub">
               <i class="fas fa-sign-in-alt"></i>
               Acceder
             </a></li>
-            <li><a class="nav-link" [routerLink]="['/register']">
+            <li><a class="nav-link" [routerLink]="['/register']" *ngIf="!identity || !identity.sub">
               <i class="fas fa-user-plus"></i>
               Registrarse
             </a></li>
