@@ -26,6 +26,15 @@ export class UserService {
             .post(`${this.url}/login`, params, {headers});
   }
 
+  register(dataUserToRegister){
+    let json = JSON.stringify(dataUserToRegister);
+    let params = "json="+json;
+    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});//enviamos como datos de un formulario
+
+    return this._http
+            .post(`${this.url}/user/new`, params, {headers});
+  }
+
   getLocalIdentity(){
     let lSIdentity = localStorage.getItem('identity');
     return lSIdentity && lSIdentity.length ? JSON.parse(lSIdentity) : null;     
