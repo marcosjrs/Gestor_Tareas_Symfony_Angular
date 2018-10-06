@@ -28,7 +28,11 @@ export class UserService {
 
   getLocalIdentity(){
     let lSIdentity = localStorage.getItem('identity');
-    return lSIdentity ? JSON.parse(lSIdentity) : null;     
+    return lSIdentity.length ? JSON.parse(lSIdentity) : null;     
+  }
+
+  getLocalToken(){
+    return localStorage.getItem('token');     
   }
 
 }
