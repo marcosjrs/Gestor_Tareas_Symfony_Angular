@@ -1,0 +1,32 @@
+<div class="container user-edit-component mt-3">
+  <div class="row">
+    <div class="col-12 col-sm-8 col-lg-6 ">
+      <h3>{{title}}</h3>
+      <div class="alert alert-success" *ngIf="status=='success'">Datos modificados correctamente</div>
+      <div class="alert alert-danger" *ngIf="status=='error'">No ha sido posible modificar los datos</div>
+      <form #userEditForm="ngForm" (ngSubmit)="onSubmit();" class="form-row mt-2">
+        <p class="col-12">
+          <label>Nombre:</label>
+          <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="user.name" required>
+          <span class="text-danger" *ngIf="!name.valid && name.touched">Nombre obligatorio</span>
+        </p>
+        <p class="col-12">
+          <label>Apellidos:</label>
+          <input type="text" class="form-control" name="surnmae" #surname="ngModel" [(ngModel)]="user.surname" required>
+          <span class="text-danger" *ngIf="!surname.valid && surname.touched">Apellidos obligatorios</span>
+        </p>
+        <p class="col-12">
+          <label>Email:</label>
+          <input type="email" class="form-control" name="email" #email="ngModel" [(ngModel)]="user.email" disabled>
+        </p>
+        <p class="col-12">
+          <label>Contraseña:</label>
+          <input type="password" class="form-control" name="password" #password="ngModel" [(ngModel)]="user.password">
+        </p>
+        <p class="col-12">
+          <input type="submit" class="btn btn-primary" value="Modificar" [disabled]="!userEditForm.form.valid">
+        </p>
+      </form>
+    </div>
+  </div>
+</div>

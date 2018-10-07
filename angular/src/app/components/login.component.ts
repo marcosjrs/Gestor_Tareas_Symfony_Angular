@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
               this.identity = response.json();
               if(response.status){ 
 
-                localStorage.setItem('identity', response.text()); 
+                this.userService.setLocalIdentity(response.text()); 
                 
                 //Una vez realizado el login correctamente, obtendremos el token que añadiremos a cada petición.
                 this.userService.signup( {...this.user, getHash:null}).subscribe( responseToken => {
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
                     this.token = responseToken;
                     console.log(this.token);
                     if(responseToken.status){
-                      localStorage.setItem('token', responseToken.json());
+                      this.userService.setLocalToken( responseToken.json());
                       window.location.href = "/"
                     }
                   }else{

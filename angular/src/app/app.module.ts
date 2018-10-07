@@ -7,7 +7,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login.component';
 import { RegisterComponent } from './components/register.component';
 import { AppRoutingModule } from './app.routing';
-import { DefaultComponent } from './components/default.component'; //contiene RouterModule.forRoot(...rutas...)
+import { DefaultComponent } from './components/default.component';
+import { UserEditComponent } from './components/user.edit.component'; //contiene RouterModule.forRoot(...rutas...)
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { DefaultComponent } from './components/default.component'; //contiene Ro
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    DefaultComponent
+    DefaultComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,

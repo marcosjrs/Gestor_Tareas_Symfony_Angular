@@ -35,6 +35,18 @@ export class UserService {
             .post(`${this.url}/user/new`, params, {headers});
   }
 
+  userEdit(dataUserToEdit, token){
+    let json = JSON.stringify(dataUserToEdit);
+    let params = `json=${json}&authorization=${token}`;
+    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});//enviamos como datos de un formulario
+
+    return this._http
+            .post(`${this.url}/user/edit`, params, {headers});
+  }
+
+  /**
+   * Devuelve un objeto JSON con los datos del usuario
+   */
   getLocalIdentity(){
     let lSIdentity = localStorage.getItem('identity');
     return lSIdentity && lSIdentity.length ? JSON.parse(lSIdentity) : null;     
@@ -42,6 +54,14 @@ export class UserService {
 
   getLocalToken(){
     return localStorage.getItem('token');     
+  }
+
+  setLocalIdentity(identity:string){
+    localStorage.setItem('identity', identity); 
+  }
+
+  setLocalToken(token){
+    localStorage.setItem('token', token);
   }
 
 }
