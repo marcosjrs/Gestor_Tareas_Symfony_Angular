@@ -39,7 +39,8 @@ export class UserEditComponent implements OnInit {
         resp=>{
           if(resp.json().status=="success"){
             this.status = "success";
-            this._userService.setLocalIdentity(JSON.stringify(this.user))
+            let oldDataUser = this._userService.getLocalIdentity();
+            this._userService.setLocalIdentity(JSON.stringify({...oldDataUser, ...this.user}));
           }else{
             this.status = "error";
           }
