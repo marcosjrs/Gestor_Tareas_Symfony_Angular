@@ -14,7 +14,7 @@ export class TaskNewComponent implements OnInit {
   public identity;
   public token;
   public task:Task;
-  public status:string ="pending";
+  public status:string;
 
   constructor(private _userService:UserService, private _router:Router, private _route:ActivatedRoute, private _taskService:TaskService) {
     this.title = 'Nueva Tarea';
@@ -34,6 +34,7 @@ export class TaskNewComponent implements OnInit {
     this._taskService.create(this.task, this.token).subscribe(
       resp=>{
         this.status = resp.json().status;
+        this._router.navigate(["/index"]);
       },
       err=>{
         console.log("Error");

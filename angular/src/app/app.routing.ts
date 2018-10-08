@@ -8,6 +8,8 @@ import { TaskNewComponent } from './components/task.new.component';
 
 const routes: Routes = [
     { path: '', component: DefaultComponent },
+    { path: 'index', component: DefaultComponent },
+    { path: 'index/:page', component: DefaultComponent },
     { path: 'login', component: LoginComponent },
     { path: 'login/:action', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
