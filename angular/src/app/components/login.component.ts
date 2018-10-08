@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
                     console.log(this.token);
                     if(responseToken.status){
                       this.userService.setLocalToken( responseToken.json());
-                      window.location.href = "/"
+                     // window.location.href = "/"
                     }
                   }else{
                     console.log("Get token: Error en servidor")

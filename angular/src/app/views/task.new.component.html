@@ -1,0 +1,32 @@
+<div class="container task-new-component mt-3">
+    <div class="row">
+      <div class="col-12 col-sm-8 col-lg-6 ">
+        <h3>{{title}}</h3>
+        <div class="alert alert-success" *ngIf="status=='success'">Tarea creada correctamente {{lastEmailRegistered}}</div>
+        <div class="alert alert-danger" *ngIf="status=='error'">No ha sido posible crear la tarea</div>
+        <form #tasknewForm="ngForm" (ngSubmit)="onSubmit();" class="form-row mt-2">
+          <p class="col-12">
+            <label>Título:</label>
+            <input type="text" class="form-control" name="title" #titleInput="ngModel" [(ngModel)]="task.title" required>
+            <span class="text-danger" *ngIf="!titleInput.valid && titleInput.touched">El título es obligatorio</span>
+          </p>
+          <p class="col-12">
+            <label>Descripción:</label>
+            <textarea class="form-control" name="description" #description="ngModel" [(ngModel)]="task.description" required ></textarea>
+            <span class="text-danger" *ngIf="!description.valid && description.touched">La descripción es obligatoria</span>
+          </p>
+          <p class="col-12">
+            <label>Estado</label>
+            <select name="status" class="form-control" [(ngModel)]="task.status" #statusInput="ngModel"> 
+              <option value="new">Nueva</option>
+              <option value="todo">Por Hacer</option>
+                <option value="finished">Hecha</option>
+              </select>
+          </p>
+          <p class="col-12">
+            <input type="submit" class="btn btn-primary" value="Crear Tarea" [disabled]="!tasknewForm.form.valid">
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
