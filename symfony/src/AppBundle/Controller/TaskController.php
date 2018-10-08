@@ -46,48 +46,38 @@ class TaskController extends Controller
                 $description = (isset($params->description)) ? $params->description : null;
                 $status = (isset($params->status)) ? $params->status : null;
                 $createdAt = new \Datetime("now");
-                $email = (isset($params->email)) ? $params->email : null;
 
-                $idTask = (isset($params->email)) ? $params->email : null;
+                $em = $this->getDoctrine()->getManager();
+                $repoUser = $em->getRepository("BackendBundle:User");
+                $user = $repoUser->findOneBy(array( "email"=>$auth->email )); //check que siga existiendo
 
-                //verificamos si le pertenece el email  con ese token  
-                $validData = $email && ($auth->email == $email);
-
-                if($validData){ 
-                    $em = $this->getDoctrine()->getManager();
-                    $repoUser = $em->getRepository("BackendBundle:User");
-                    $user = $repoUser->findOneBy(array( "email"=>$email )); //check que siga existiendo
-
-                    if($user){ 
-                        $validDataTask = true;
-                        if($id == null){    //creamos nueva tarea  
-                            $task = new Task();   
-                            $task->setCreatedAt($createdAt);
-                            $task->setUser($user);
-                        }else{  // Es una tarea que ya existía
-                            $repoUser = $em->getRepository("BackendBundle:Task");
-                            $task = $repoUser->findOneBy(array( "id"=>$id )); //recogemos el task a modificar
-                            $validDataTask = $task && ($auth->sub == $task->getUser()->getId());// comprobamos que le pertenezca
-                            if(!$validDataTask){
-                                $data = array('status'=>'error', 'code'=>400, 'data'=>'Esa tarea ya no existe');
-                                $validDataTask = false;
-                            } 
-                        }
-                        if($validDataTask){
-                            if($title) $task->setTitle($title);   
-                            if($description)  $task->setDescription($description);   
-                            if($status)  $task->setStatus($status);
-                            $task->setUpdatedAt($createdAt);
-                            $em->persist($task);
-                            $em->flush();
-                            $data = array('status'=>'success', 'code'=>200, 'data'=>$task);
-                        }
-                    }else{
-                        $data = array('status'=>'error', 'code'=>400, 'data'=>'Ese usuario ya no existe');
-                    } 
+                if($user){ 
+                    $validDataTask = true;
+                    if($id == null){    //creamos nueva tarea  
+                        $task = new Task();   
+                        $task->setCreatedAt($createdAt);
+                        $task->setUser($user);
+                    }else{  // Es una tarea que ya existía
+                        $repoUser = $em->getRepository("BackendBundle:Task");
+                        $task = $repoUser->findOneBy(array( "id"=>$id )); //recogemos el task a modificar
+                        $validDataTask = $task && ($auth->sub == $task->getUser()->getId());// comprobamos que le pertenezca
+                        if(!$validDataTask){
+                            $data = array('status'=>'error', 'code'=>400, 'data'=>'Esa tarea ya no existe');
+                            $validDataTask = false;
+                        } 
+                    }
+                    if($validDataTask){
+                        if($title) $task->setTitle($title);   
+                        if($description)  $task->setDescription($description);   
+                        if($status)  $task->setStatus($status);
+                        $task->setUpdatedAt($createdAt);
+                        $em->persist($task);
+                        $em->flush();
+                        $data = array('status'=>'success', 'code'=>200, 'data'=>$task);
+                    }
                 }else{
-                    $data = array('status'=>'error', 'code'=>400, 'data'=>'Ese email no pertenece a ese token');
-                }            
+                    $data = array('status'=>'error', 'code'=>400, 'data'=>'Ese usuario ya no existe');
+                }          
             }
         }else{
             $data = array('status'=>'error', 'code'=>400, 'data'=>'authorization no válido');
