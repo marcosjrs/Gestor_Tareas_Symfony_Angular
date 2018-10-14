@@ -1,5 +1,7 @@
 <div>
-    <h3 class="text-center mt-4 mb-4">Página de Bienvenida</h3>
+    <h3 class="text-center mt-4 mb-4">Tus Tareas</h3>
+    <div class="text-center" *ngIf="loadingPage"><i class="fas fa-spinner fa-spin"></i> Cargando tus tareas...</div>
+    <div *ngIf="noLogin">Debes estar logado para ver tus tareas. Puedes logarte desde <a [routerLink]="['/login']">aquí</a> o registrarte desde <a [routerLink]="['/register']">aquí</a> </div>
     <div *ngIf="tasks && tasks.length">
         <table class="table table-striped">
             <thead>
@@ -21,5 +23,14 @@
                 </tr>
             </tbody>
         </table>
+        <nav aria-label="Page navigation" *ngIf="pages">
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link btn-secondary" (click)="loadPage(pagePrev)" [routerLink]="['/index',pagePrev]">&laquo;</a></li>
+              <li class="page-item" *ngFor="let page of pages"><a class="page-link btn-secondary" (click)="loadPage((page+1))" [routerLink]="['/index',(page+1)]">{{page+1}}</a></li>
+              <li class="page-item"><a class="page-link btn-secondary" (click)="loadPage(pageNext)"  [routerLink]="['/index',pageNext]">&raquo;</a></li>
+              <li *ngIf="internalLoading"><i class="fas fa-spinner fa-spin navigation-loader"></i></li> 
+            </ul>
+        </nav>
+        
     </div>
 </div>
