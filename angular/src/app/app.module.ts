@@ -9,7 +9,8 @@ import { RegisterComponent } from './components/register.component';
 import { AppRoutingModule } from './app.routing';
 import { DefaultComponent } from './components/default.component';
 import { UserEditComponent } from './components/user.edit.component';
-import { TaskNewComponent } from './components/task.new.component'; //contiene RouterModule.forRoot(...rutas...)
+import { TaskNewComponent } from './components/task.new.component';
+import { TaskDetailComponent } from './components/task.detail.component'; //contiene RouterModule.forRoot(...rutas...)
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { TaskNewComponent } from './components/task.new.component'; //contiene R
     RegisterComponent,
     DefaultComponent,
     UserEditComponent,
-    TaskNewComponent
+    TaskNewComponent,
+    TaskDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -17,7 +17,7 @@
                 <tr *ngFor="let task of tasks">
                     <th scope="row">{{task.id}}</th>
                     <td class="info-status" [ngClass]="{'status-todo':task.status=='todo','status-new':task.status=='new','status-finished':task.status=='finished'}">{{task.status}}</td>
-                    <td>{{task.title}}</td>
+                    <td><a [routerLink]="['/task', task.id]">{{task.title}}</a></td>
                     <td>{{task.description}}</td>
                     <td><a href="javascript:void(0)" class="btn btn-secondary">Editar</a></td>
                 </tr>
