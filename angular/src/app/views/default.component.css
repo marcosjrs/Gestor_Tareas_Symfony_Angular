@@ -2,6 +2,26 @@
     color: #212529;
 }
 
+table tbody tr td.info-status{
+    font-weight: 450;
+    line-height: 1.2;
+}
+
+table tbody tr td.info-status.status-new{
+    color: #1e7584;
+}
+
+table tbody tr td.info-status.status-todo {
+    color: #ffc107;
+}
+
+table tbody tr td.info-status.status-finished{
+    color:#058e25;
+}
+table tbody tr td .btn-secondary{
+    background-color: #557694;
+}
+
 .navigation-loader{    
     margin-left: 5px; 
     line-height: 2.50;
