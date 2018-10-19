@@ -1,7 +1,7 @@
 <div>
     <h3 class="text-center mt-4 mb-4">Tus Tareas</h3>
     <div class="text-center" *ngIf="loadingPage"><i class="fas fa-spinner fa-spin"></i> Cargando tus tareas...</div>
-    <div *ngIf="noLogin">Debes estar logado para ver tus tareas. Puedes logarte desde <a [routerLink]="['/login']">aquí</a> o registrarte desde <a [routerLink]="['/register']">aquí</a> </div>
+    <div *ngIf="noLogin"  class="text-center"><p>Debes estar logado para ver tus tareas.</p> Puedes logarte desde <a [routerLink]="['/login']">aquí</a> o registrarte desde <a [routerLink]="['/register']">aquí</a> </div>
     <div *ngIf="tasks && tasks.length">
         <table class="table table-striped">
             <thead>
