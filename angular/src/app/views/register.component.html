@@ -1,7 +1,7 @@
 <div class="container register-component mt-3">
   <div class="row">
-    <div class="col-12 col-sm-8 col-lg-6 ">
-      <h3>{{title}}</h3>
+    <div class="col-12 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 ">
+      <h3 class="text-center mb-3">{{title}}</h3>
       <div class="alert alert-success" *ngIf="status=='success'">Registrado correctamente {{lastEmailRegistered}}. Puedes loguearte <a [routerLink]="['/login']">desde aquí</a> </div>
       <div class="alert alert-danger" *ngIf="status=='error'">No ha sido posible registrarse con esos datos</div>
       <form #registerForm="ngForm" (ngSubmit)="onSubmit(); registerForm.reset()" class="form-row mt-2">
@@ -26,7 +26,7 @@
           <span class="text-danger" *ngIf="!password.valid && password.touched">Contraseña no válida</span>
         </p>
         <p class="col-12">
-          <input type="submit" class="btn btn-primary" value="Registrarse" [disabled]="!registerForm.form.valid">
+          <input type="submit" class="btn btn-primary col-12 mt-2" value="Registrarse" [disabled]="!registerForm.form.valid">
         </p>
       </form>
     </div>

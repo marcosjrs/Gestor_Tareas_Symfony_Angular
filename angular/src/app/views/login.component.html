@@ -1,7 +1,7 @@
 <div class="container login-component mt-3">
   <div class="row">
-    <div class="col-12 col-sm-8 col-lg-6 ">
-      <h3>{{title}}</h3>
+    <div class="col-12 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 ">
+      <h3 class="text-center mb-3">{{title}}</h3>
       <div class="identity-alert alert alert-success" *ngIf="identity && identity.sub">
         Identificado correctamente como {{identity.email}}
       </div>
@@ -20,7 +20,7 @@
           <span *ngIf="!password.valid && password.touched">Password no válido</span>
         </p>
         <p class="col-12">
-          <input type="submit" class="btn btn-primary" value="Entrar">
+          <input type="submit" class="btn btn-primary col-12 mt-2" value="Entrar">
         </p>
       </form>
     </div>
