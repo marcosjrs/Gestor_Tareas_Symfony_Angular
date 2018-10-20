@@ -1,6 +1,7 @@
 <div>
-    <div class="veladura" *ngIf="loadingPage"><div class="text-center texto"><i class="fas fa-spinner fa-spin"></i> Cargando tareas...</div></div>
+    <div class="veladura" *ngIf="loadingUpdateData"><div class="text-center texto"><i class="fas fa-spinner fa-spin"></i> Actualizando tareas...</div></div>
     <h3 class="text-center mt-4 mb-4">Mis Tareas</h3>    
+    <div *ngIf="loadingPage"><div class="text-center texto"><i class="fas fa-spinner fa-spin"></i> Cargando tareas...</div></div>
     <div *ngIf="noLogin" class="text-center"><p>Debes estar logado para ver tus tareas.</p> Puedes logarte desde <a [routerLink]="['/login']">aquí</a> o registrarte desde <a [routerLink]="['/register']">aquí</a> </div>
     <div *ngIf="tasks && tasks.length">
         <table class="table table-striped">

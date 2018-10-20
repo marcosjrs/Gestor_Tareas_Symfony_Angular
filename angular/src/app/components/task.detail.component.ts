@@ -49,4 +49,14 @@ export class TaskDetailComponent implements OnInit {
     );
   }
 
+  deleteTask(id){
+    this._taskService.deleteTask(this.token, id).subscribe(
+      resp=>{ 
+        this._router.navigate(["/"]);
+      },
+      err =>{
+      } 
+    );
+  }
+
 }

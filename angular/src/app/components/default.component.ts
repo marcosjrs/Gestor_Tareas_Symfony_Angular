@@ -15,6 +15,7 @@ export class DefaultComponent implements OnInit {
   //Para paginación
   public loadingPage;
   public internalLoading;
+  public loadingUpdateData;
   public actualPage;
   public pages;
   public pagePrev;
@@ -57,6 +58,7 @@ export class DefaultComponent implements OnInit {
           //ocultamos loader
           this.internalLoading = false;
           this.loadingPage = false;
+          this.loadingUpdateData = false;
         }
       },
       err => console.log(err)
@@ -71,7 +73,7 @@ export class DefaultComponent implements OnInit {
   } 
 
   deleteTask(id){
-    this.loadingPage = true;
+    this.loadingUpdateData = true;
     this.tasks = this.tasks.filter(obj => obj.id !== id); //optimistic ;)
     this._taskService.deleteTask(this.token, id).subscribe(
       resp=>{ 

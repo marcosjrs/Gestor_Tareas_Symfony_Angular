@@ -22,4 +22,8 @@
         </div>
       </div>
   </div>
+  <div class="mt-5">
+      <a href="javascript:void(0)" [routerLink]="['/task-edit', task.id]" class="btn btn-outline-primary"><i class="fas fa-edit"></i> Modificar</a>&nbsp;
+      <a href="javascript:void(0)" (click)="deleteTask(task.id)"  class="btn btn-outline-danger"><i class="fas fa-trash"></i> Eliminar</a>
+  </div>
 </div>
