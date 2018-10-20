@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { TaskService } from '../services/task.service';
 import { Task } from '../models/task';
+import { ESTADOS } from '../services/global';
 
 @Component({
   selector: 'app-task.detail',
@@ -13,12 +14,14 @@ export class TaskDetailComponent implements OnInit {
   public task:Task;
   public token;
   public loadingPage;
+  public ESTADOS;
 
   constructor(private _router: Router,
     private _route: ActivatedRoute,
     private _userService: UserService,
     private _taskService: TaskService) {
     this.token = _userService.getLocalToken();
+    this.ESTADOS = ESTADOS;
 
   }
 

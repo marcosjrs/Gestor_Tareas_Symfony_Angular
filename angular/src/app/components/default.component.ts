@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../services/task.service';
 import { UserService } from '../services/user.service';
 import { Task } from '../models/task';
+import { ESTADOS } from '../services/global';
 
 @Component({
   selector: 'app-default',
@@ -20,8 +21,11 @@ export class DefaultComponent implements OnInit {
   public pageNext;
   private token;
   public noLogin;
+  public ESTADOS;
+  
 
   constructor(private _route: ActivatedRoute, private _router: Router, private _userService: UserService, private _taskService: TaskService) {
+    this.ESTADOS = ESTADOS;
   }
 
   ngOnInit() {

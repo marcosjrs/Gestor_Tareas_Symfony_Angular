@@ -5,7 +5,7 @@
         <div>
           <span>#{{task.id}}</span> {{task.title}}
           <div class="info-status small d-none d-sm-block" [ngClass]="{'status-todo':task.status=='todo','status-new':task.status=='new','status-finished':task.status=='finished'}" >
-            {{task.status}}
+            {{ESTADOS[task.status]}}
           </div>
         </div>        
       </div>
@@ -15,7 +15,7 @@
       <div class="card-info small">
         <div class="card-info-content">
             <div class="info-status small d-inline-block d-sm-none" [ngClass]="{'status-todo':task.status=='todo','status-new':task.status=='new','status-finished':task.status=='finished'}">
-                {{task.status}}
+                {{ESTADOS[task.status]}}
             </div>
             <div class="small">Creación: {{(task.createdAt.timestamp*1000) | date:'dd-MM-yyyy HH:mm:ss'}} ( {{task.user.name}} )</div>
             <div class="small">Actualización: {{(task.updatedAt.timestamp*1000) | date:'dd-MM-yyyy HH:mm:ss'}}</div>
