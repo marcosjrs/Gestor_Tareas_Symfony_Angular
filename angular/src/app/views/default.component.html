@@ -1,9 +1,44 @@
-<div>
-    <div class="veladura" *ngIf="loadingUpdateData"><div class="text-center texto"><i class="fas fa-spinner fa-spin"></i> Actualizando tareas...</div></div>
-    <h3 class="text-center mt-4 mb-4">Mis Tareas</h3>    
-    <div *ngIf="loadingPage"><div class="text-center texto"><i class="fas fa-spinner fa-spin"></i> Cargando tareas...</div></div>
-    <div *ngIf="noLogin" class="text-center"><p>Debes estar logado para ver tus tareas.</p> Puedes logarte desde <a [routerLink]="['/login']">aquí</a> o registrarte desde <a [routerLink]="['/register']">aquí</a> </div>
+<div class="mr-2 ml-2">
+    <div class="veladura" *ngIf="loadingUpdateData">
+        <div class="text-center texto"><i class="fas fa-spinner fa-spin"></i> Actualizando tareas...</div>
+    </div>
+    <h3 class="text-center mt-4 mb-4">Mis Tareas</h3>
+    <div *ngIf="loadingPage">
+        <div class="text-center texto"><i class="fas fa-spinner fa-spin"></i> Cargando tareas...</div>
+    </div>
+    <div *ngIf="noLogin" class="text-center">
+        <p>Debes estar logado para ver tus tareas.</p> Puedes logarte desde <a [routerLink]="['/login']">aquí</a> o
+        registrarte desde <a [routerLink]="['/register']">aquí</a>
+    </div>
     <div *ngIf="tasks && tasks.length">
+        <form class="forms" #formBusqueda="ngForm" (ngSubmit)="onSubmit()" >
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label for="filter">Mostrar sólo</label>
+                    <select class="form-control" name="filter" [(ngModel)]="search.filter">
+                        <option value="0" selected="selected">Sin filtro</option>
+                        <option value="1">Nuevas</option>
+                        <option value="2">Para Hacer</option>
+                        <option value="3">Acabadas</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="order">Orden por</label>
+                    <select class="form-control" name="order" [(ngModel)]="search.order">
+                        <option value="0" selected="selected">Por defecto</option>
+                        <option value="1">Fecha ascendente</option>
+                        <option value="2">Fecha descendente</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="order">Texto a buscar</label>
+                <div class="row">
+                    <div class="col-sm-9 col-xs-12"><input type="text" class="form-control" name="searchString"  [(ngModel)]="search.searchString"></div>
+                    <div class="col-sm-3 col-xs-12 mt-3 mt-sm-0"><button type="submit" class="btn btn-default col-12"><i class="fas fa-search"></i> Buscar</button></div>
+                </div>
+            </div>
+        </form>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -21,23 +56,25 @@
                     <td><a [routerLink]="['/task', task.id]">{{task.title}}</a></td>
                     <td>{{task.description}}</td>
                     <td>
-                        <a href="javascript:void(0)" [routerLink]="['/task-edit', task.id]" class="btn btn-outline-primary"><i class="fas fa-edit"></i></a>&nbsp;
-                        <a href="javascript:void(0)" class="btn btn-outline-danger" (click)="selectDeleteTask(task.id)" data-toggle="modal" data-target="#exampleModal">
+                        <a href="javascript:void(0)" [routerLink]="['/task-edit', task.id]" class="btn btn-outline-primary"><i
+                                class="fas fa-edit"></i></a>&nbsp;
+                        <a href="javascript:void(0)" class="btn btn-outline-danger" (click)="selectDeleteTask(task.id)"
+                            data-toggle="modal" data-target="#exampleModal">
                             <i class="fas fa-trash"></i>
                         </a>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <nav aria-label="Page navigation" *ngIf="pages">
+        <nav aria-label="Page navigation" *ngIf="pages && inSearch">
             <ul class="pagination">
-              <li class="page-item"><a class="page-link btn-secondary" (click)="loadPage(pagePrev)" (click)="loadPage(pagePrev)">&laquo;</a></li>
-              <li class="page-item" *ngFor="let page of pages"><a class="page-link btn-secondary" (click)="loadPage((page+1))">{{page+1}}</a></li>
-              <li class="page-item"><a class="page-link btn-secondary" (click)="loadPage(pageNext)" (click)="loadPage(pageNext)">&raquo;</a></li>
-              <li *ngIf="internalLoading"><i class="fas fa-spinner fa-spin navigation-loader"></i></li> 
+                <li class="page-item"><a class="page-link btn-secondary" (click)="loadPage(pagePrev)" (click)="loadPage(pagePrev)">&laquo;</a></li>
+                <li class="page-item" *ngFor="let page of pages"><a class="page-link btn-secondary" (click)="loadPage((page+1))">{{page+1}}</a></li>
+                <li class="page-item"><a class="page-link btn-secondary" (click)="loadPage(pageNext)" (click)="loadPage(pageNext)">&raquo;</a></li>
+                <li *ngIf="internalLoading"><i class="fas fa-spinner fa-spin navigation-loader"></i></li>
             </ul>
         </nav>
-        
+
     </div>
 </div>
 
@@ -45,19 +82,19 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Se procede a la eliminación de la tarea</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            ¿Estás seguro de querer eliminar la tarea #{{idTaskToDelete}}?
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-danger" (click)="deleteTask(idTaskToDelete)" data-dismiss="modal">Sí</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
-        </div>
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Se procede a la eliminación de la tarea</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de querer eliminar la tarea #{{idTaskToDelete}}?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="deleteTask(idTaskToDelete)" data-dismiss="modal">Sí</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+            </div>
         </div>
     </div>
 </div>

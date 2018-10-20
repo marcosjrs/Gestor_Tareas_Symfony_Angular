@@ -24,10 +24,13 @@ export class DefaultComponent implements OnInit {
   public noLogin;
   public ESTADOS;
   public idTaskToDelete;
+  public search;
+  public inSearch;
   
 
   constructor(private _route: ActivatedRoute, private _router: Router, private _userService: UserService, private _taskService: TaskService) {
     this.ESTADOS = ESTADOS;
+    this.search = {filter: "0", order: "0", searchString: ""};
   }
 
   ngOnInit() {
@@ -40,6 +43,7 @@ export class DefaultComponent implements OnInit {
   }
 
   loadPage(actPage){
+    this.inSearch = false;
     this.actualPage = actPage;
     this.internalLoading = true;
     this._taskService.getPage(this.token, this.actualPage).subscribe(
@@ -88,6 +92,24 @@ export class DefaultComponent implements OnInit {
         this.loadPage(this.actualPage); 
       } 
     );
+  }
+
+  onSubmit(){
+    this.inSearch = true;
+    this._taskService
+        .search(this.token, this.search.searchString, this.search.filter, this.search.order)
+        .subscribe(
+          resp=>{
+            this.inSearch = false;
+            if (resp.json().status == "success") {
+              const respJson = resp.json();
+              this.tasks =respJson.data;
+            }
+          },
+          err=>{
+            console.log(err);
+          }
+        );
   }
 
 }

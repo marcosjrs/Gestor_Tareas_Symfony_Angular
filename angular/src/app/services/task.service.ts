@@ -37,4 +37,10 @@ export class TaskService {
     return this._http.post(`${GLOBAL.url}/task/remove/${id}`,`authorization=${token}`,{headers});
   }
 
+  search(token, search, filter, order){
+    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+    let url = search ? `${GLOBAL.url}/task/search/${search}`:`${GLOBAL.url}/task/search`;
+    return this._http.post(url,`filter=${filter}&order=${order}&authorization=${token}`,{headers});
+  }
+
 }
