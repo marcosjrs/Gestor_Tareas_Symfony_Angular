@@ -22,4 +22,9 @@ export class TaskService {
     return this._http.post(`${GLOBAL.url}/task/list?page=${page}`,`authorization=${token}`,{headers});
   }
 
+  getTask(token,id){
+    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+    return this._http.post(`${GLOBAL.url}/task/detail/${id}`,`authorization=${token}`,{headers});
+  }
+
 }

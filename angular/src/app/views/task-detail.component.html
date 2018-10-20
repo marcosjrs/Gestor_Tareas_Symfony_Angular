@@ -1,3 +1,25 @@
-<p>
-  task-detail works!
-</p>
+<div class="text-center mt-5" *ngIf="loadingPage"><i class="fas fa-spinner fa-spin"></i> Cargando información...</div>
+<div *ngIf="task" class="ml-3 mr-3">  
+  <div class="card mt-5">
+      <div class="card-header">
+        <div>
+          <span>#{{task.id}}</span> {{task.title}}
+          <div class="info-status small d-none d-sm-block" [ngClass]="{'status-todo':task.status=='todo','status-new':task.status=='new','status-finished':task.status=='finished'}" >
+            {{task.status}}
+          </div>
+        </div>        
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{task.description}}</p>
+      </div>
+      <div class="card-info small">
+        <div class="card-info-content">
+            <div class="small">Creación: {{(task.createdAt.timestamp*1000) | date:'dd-MM-yyyy HH:mm:ss'}} ( {{task.user.name}} )</div>
+            <div class="small">Actualización: {{(task.updatedAt.timestamp*1000) | date:'dd-MM-yyyy HH:mm:ss'}}</div>
+            <div class="info-status small d-inline-block d-sm-none" [ngClass]="{'status-todo':task.status=='todo','status-new':task.status=='new','status-finished':task.status=='finished'}">
+                {{task.status}}
+            </div>
+        </div>
+      </div>
+  </div>
+</div>
