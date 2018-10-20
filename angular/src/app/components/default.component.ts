@@ -23,6 +23,7 @@ export class DefaultComponent implements OnInit {
   private token;
   public noLogin;
   public ESTADOS;
+  public idTaskToDelete;
   
 
   constructor(private _route: ActivatedRoute, private _router: Router, private _userService: UserService, private _taskService: TaskService) {
@@ -71,6 +72,10 @@ export class DefaultComponent implements OnInit {
     actualPage = actualPage ? actualPage : 1;
     this.loadPage(actualPage);
   } 
+
+  selectDeleteTask(id){
+    this.idTaskToDelete = id;
+  }
 
   deleteTask(id){
     this.loadingUpdateData = true;

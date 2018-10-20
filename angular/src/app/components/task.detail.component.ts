@@ -15,6 +15,7 @@ export class TaskDetailComponent implements OnInit {
   public token;
   public loadingPage;
   public ESTADOS;
+  public idTaskToDelete;
 
   constructor(private _router: Router,
     private _route: ActivatedRoute,
@@ -47,6 +48,10 @@ export class TaskDetailComponent implements OnInit {
       err => {
       }
     );
+  }
+
+  selectDeleteTask(id){
+    this.idTaskToDelete = id;
   }
 
   deleteTask(id){
