@@ -6,6 +6,7 @@ import { DefaultComponent } from './components/default.component';
 import { UserEditComponent } from './components/user.edit.component';
 import { TaskNewComponent } from './components/task.new.component';
 import { TaskDetailComponent } from './components/task.detail.component';
+import { TaskEditComponent } from './components/task.edit.component';
 
 const routes: Routes = [
     { path: '', component: DefaultComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'user-edit', component: UserEditComponent },
     { path: 'task-new', component: TaskNewComponent },
+    { path: 'task-edit/:id', component: TaskEditComponent },
     { path: 'task/:id', component: TaskDetailComponent },
     { path: '**', component: LoginComponent } //el resto de las rutas
 ];

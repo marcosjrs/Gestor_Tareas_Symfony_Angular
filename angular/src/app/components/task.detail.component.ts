@@ -5,7 +5,7 @@ import { TaskService } from '../services/task.service';
 import { Task } from '../models/task';
 
 @Component({
-  selector: 'app-task-detail',
+  selector: 'app-task.detail',
   templateUrl: '../views/task-detail.component.html',
   styleUrls: ['../views/task-detail.component.css']
 })

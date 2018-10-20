@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app.routing';
 import { DefaultComponent } from './components/default.component';
 import { UserEditComponent } from './components/user.edit.component';
 import { TaskNewComponent } from './components/task.new.component';
+import { TaskEditComponent } from './components/task.edit.component';
 import { TaskDetailComponent } from './components/task.detail.component'; //contiene RouterModule.forRoot(...rutas...)
 
 
@@ -21,6 +22,7 @@ import { TaskDetailComponent } from './components/task.detail.component'; //cont
     DefaultComponent,
     UserEditComponent,
     TaskNewComponent,
+    TaskEditComponent,
     TaskDetailComponent
   ],
   imports: [

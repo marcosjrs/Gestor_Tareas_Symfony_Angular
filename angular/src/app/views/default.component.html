@@ -19,7 +19,7 @@
                     <td class="info-status" [ngClass]="{'status-todo':task.status=='todo','status-new':task.status=='new','status-finished':task.status=='finished'}">{{task.status}}</td>
                     <td><a [routerLink]="['/task', task.id]">{{task.title}}</a></td>
                     <td>{{task.description}}</td>
-                    <td><a href="javascript:void(0)" class="btn btn-secondary">Editar</a></td>
+                    <td><a href="javascript:void(0)" [routerLink]="['/task-edit', task.id]" class="btn btn-secondary">Editar</a></td>
                 </tr>
             </tbody>
         </table>

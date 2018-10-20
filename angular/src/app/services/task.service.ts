@@ -27,4 +27,9 @@ export class TaskService {
     return this._http.post(`${GLOBAL.url}/task/detail/${id}`,`authorization=${token}`,{headers});
   }
 
+  updateTask(token,task){
+    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+    return this._http.post(`${GLOBAL.url}/task/edit/${task.id}`,`json=${JSON.stringify(task)}&authorization=${token}`,{headers});
+  }
+
 }
