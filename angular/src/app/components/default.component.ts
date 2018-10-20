@@ -36,7 +36,7 @@ export class DefaultComponent implements OnInit {
   loadPage(actPage){
     this.actualPage = actPage;
     this.internalLoading = true;
-    this._taskService.get(this.token, this.actualPage).subscribe(
+    this._taskService.getPage(this.token, this.actualPage).subscribe(
       resp => {
         if (resp.json().status == "success") {
           const respJson = resp.json();

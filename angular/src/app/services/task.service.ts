@@ -17,7 +17,7 @@ export class TaskService {
     return this._http.post(`${GLOBAL.url}/task/new`,`json=${JSON.stringify(task)}&authorization=${token}`,{headers});
   }
 
-  get(token,page=1){
+  getPage(token,page=1){
     let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
     return this._http.post(`${GLOBAL.url}/task/list?page=${page}`,`authorization=${token}`,{headers});
   }
