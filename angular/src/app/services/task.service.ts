@@ -32,4 +32,9 @@ export class TaskService {
     return this._http.post(`${GLOBAL.url}/task/edit/${task.id}`,`json=${JSON.stringify(task)}&authorization=${token}`,{headers});
   }
 
+  deleteTask(token,id){
+    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+    return this._http.post(`${GLOBAL.url}/task/remove/${id}`,`authorization=${token}`,{headers});
+  }
+
 }

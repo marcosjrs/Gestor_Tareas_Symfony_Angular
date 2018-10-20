@@ -1,7 +1,7 @@
 <div>
-    <h3 class="text-center mt-4 mb-4">Tus Tareas</h3>
-    <div class="text-center" *ngIf="loadingPage"><i class="fas fa-spinner fa-spin"></i> Cargando tus tareas...</div>
-    <div *ngIf="noLogin"  class="text-center"><p>Debes estar logado para ver tus tareas.</p> Puedes logarte desde <a [routerLink]="['/login']">aquí</a> o registrarte desde <a [routerLink]="['/register']">aquí</a> </div>
+    <div class="veladura" *ngIf="loadingPage"><div class="text-center texto"><i class="fas fa-spinner fa-spin"></i> Cargando tareas...</div></div>
+    <h3 class="text-center mt-4 mb-4">Mis Tareas</h3>    
+    <div *ngIf="noLogin" class="text-center"><p>Debes estar logado para ver tus tareas.</p> Puedes logarte desde <a [routerLink]="['/login']">aquí</a> o registrarte desde <a [routerLink]="['/register']">aquí</a> </div>
     <div *ngIf="tasks && tasks.length">
         <table class="table table-striped">
             <thead>
@@ -19,7 +19,10 @@
                     <td class="info-status" [ngClass]="{'status-todo':task.status=='todo','status-new':task.status=='new','status-finished':task.status=='finished'}">{{ESTADOS[task.status]}}</td>
                     <td><a [routerLink]="['/task', task.id]">{{task.title}}</a></td>
                     <td>{{task.description}}</td>
-                    <td><a href="javascript:void(0)" [routerLink]="['/task-edit', task.id]" class="btn btn-secondary">Editar</a></td>
+                    <td>
+                        <a href="javascript:void(0)" [routerLink]="['/task-edit', task.id]" class="btn btn-outline-primary"><i class="fas fa-edit"></i></a>&nbsp;
+                        <a href="javascript:void(0)" (click)="deleteTask(task.id)"  class="btn btn-outline-danger"><i class="fas fa-trash"></i></a>
+                    </td>
                 </tr>
             </tbody>
         </table>

@@ -70,4 +70,17 @@ export class DefaultComponent implements OnInit {
     this.loadPage(actualPage);
   } 
 
+  deleteTask(id){
+    this.loadingPage = true;
+    this.tasks = this.tasks.filter(obj => obj.id !== id); //optimistic ;)
+    this._taskService.deleteTask(this.token, id).subscribe(
+      resp=>{ 
+        this.loadPage(this.actualPage); 
+      },
+      err =>{
+        this.loadPage(this.actualPage); 
+      } 
+    );
+  }
+
 }
