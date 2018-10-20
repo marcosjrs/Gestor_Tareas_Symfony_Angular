@@ -1,19 +1,17 @@
-.info-status{
-    border-radius: 5px;
-    padding: 3px;
-    color: white;
-}
 
 .info-status.status-new{    
-    background-color: #1e7584;
+    color: #1e7584;
+    text-shadow: 1px 2px 9px;
 }
 
 .info-status.status-todo {
-    background-color: #ffc107;
+    color: #ffc107;
+    text-shadow: 1px 2px 9px;
 }
 
 .info-status.status-finished{
-    background-color:#13842e;
+    color:#13842e;
+    text-shadow: 1px 2px 9px;
 }
 
 .card-header .info-status{
