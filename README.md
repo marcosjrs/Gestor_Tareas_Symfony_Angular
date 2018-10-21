@@ -106,5 +106,17 @@ Y ahora en el index.html ya podemos cargar los minificados de dichas librería.
 <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 ```
 
+## Instrucciones desde CLI Utilizadas
+
+``` ng g c components/componente ```
+``` ng g s services/servicio ```
+``` ng g class models/modelo ```
+``` ng g p pipes/pippe ``` (en este proyecto no utilicé ninguno, pero es interesante recordar esta posibilidad)
+
+``` ng serve --open ```
+
+
+
+
 
 
