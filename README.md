@@ -106,7 +106,7 @@ Y ahora en el index.html ya podemos cargar los minificados de dichas librería.
 <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 ```
 
-## Instrucciones desde CLI Utilizadas
+## Fuentes e Instrucciones de CLI Utilizadas
 
 ``` ng g c components/componente ```
 
@@ -117,6 +117,14 @@ Y ahora en el index.html ya podemos cargar los minificados de dichas librería.
 ``` ng g p pipes/pippe ``` (En este proyecto no utilicé ningun pipe, pero es interesante recordar esta posibilidad)
 
 ``` ng serve --open ```
+
+
+https://fontawesome.com/icons?d=gallery
+
+https://getbootstrap.com/docs/4.0/components/forms/
+
+https://angular.io/guide/cheatsheet
+
 
 
 
