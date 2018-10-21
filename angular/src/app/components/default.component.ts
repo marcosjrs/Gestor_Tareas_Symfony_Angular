@@ -26,6 +26,7 @@ export class DefaultComponent implements OnInit {
   public idTaskToDelete;
   public search;
   public inSearch;
+  public showingSearchForm:boolean;
   
 
   constructor(private _route: ActivatedRoute, private _router: Router, private _userService: UserService, private _taskService: TaskService) {
@@ -94,6 +95,10 @@ export class DefaultComponent implements OnInit {
     );
   }
 
+  toogleSearchForm(){
+    this.showingSearchForm = !this.showingSearchForm;
+  }
+
   onSubmit(){
     this.inSearch = true;
     this._taskService
@@ -111,5 +116,7 @@ export class DefaultComponent implements OnInit {
           }
         );
   }
+
+  
 
 }

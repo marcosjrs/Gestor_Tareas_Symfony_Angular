@@ -10,35 +10,44 @@
         <p>Debes estar logado para ver tus tareas.</p> Puedes logarte desde <a [routerLink]="['/login']">aquí</a> o
         registrarte desde <a [routerLink]="['/register']">aquí</a>
     </div>
+    
     <div *ngIf="tasks && tasks.length">
-        <form class="forms" #formBusqueda="ngForm" (ngSubmit)="onSubmit()" >
-            <div class="row">
-                <div class="form-group col-sm-6">
-                    <label for="filter">Mostrar sólo</label>
-                    <select class="form-control" name="filter" [(ngModel)]="search.filter">
-                        <option value="0" selected="selected">Sin filtro</option>
-                        <option value="1">Nuevas</option>
-                        <option value="2">Para Hacer</option>
-                        <option value="3">Acabadas</option>
-                    </select>
-                </div>
-                <div class="form-group col-sm-6">
-                    <label for="order">Orden por</label>
-                    <select class="form-control" name="order" [(ngModel)]="search.order">
-                        <option value="0" selected="selected">Por defecto</option>
-                        <option value="1">Fecha ascendente</option>
-                        <option value="2">Fecha descendente</option>
-                    </select>
-                </div>
+        <button class="btn btn-link no-decoration" type="button" (click)="toogleSearchForm()" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+           <span class="font-weight-bold">Formulario de Búsqueda </span> <i class="fas" [ngClass]="{'fa-angle-up':showingSearchForm,'fa-angle-down':!showingSearchForm}"></i>
+        </button>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body mb-4">
+                <form class="forms" #formBusqueda="ngForm" (ngSubmit)="onSubmit()" >
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="filter">Mostrar sólo</label>
+                            <select class="form-control" name="filter" [(ngModel)]="search.filter">
+                                <option value="0" selected="selected">Sin filtro</option>
+                                <option value="1">Nuevas</option>
+                                <option value="2">Para Hacer</option>
+                                <option value="3">Acabadas</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="order">Orden por</label>
+                            <select class="form-control" name="order" [(ngModel)]="search.order">
+                                <option value="0" selected="selected">Por defecto</option>
+                                <option value="1">Fecha ascendente</option>
+                                <option value="2">Fecha descendente</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="order">Texto a buscar</label>
+                        <div class="row">
+                            <div class="col-sm-9 col-xs-12"><input type="text" class="form-control" name="searchString"  [(ngModel)]="search.searchString"></div>
+                            <div class="col-sm-3 col-xs-12 mt-3 mt-sm-0"><button type="submit" class="btn btn-outline-secondary col-12"><i class="fas fa-search"></i> Buscar</button></div>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="order">Texto a buscar</label>
-                <div class="row">
-                    <div class="col-sm-9 col-xs-12"><input type="text" class="form-control" name="searchString"  [(ngModel)]="search.searchString"></div>
-                    <div class="col-sm-3 col-xs-12 mt-3 mt-sm-0"><button type="submit" class="btn btn-outline-secondary col-12"><i class="fas fa-search"></i> Buscar</button></div>
-                </div>
-            </div>
-        </form>
+        </div>
+
         <table class="table table-striped">
             <thead>
                 <tr>

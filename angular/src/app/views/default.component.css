@@ -2,6 +2,10 @@
     color: #212529;
 }
 
+.btn-link.collapsed{
+    text-decoration: none;
+}
+
 table tbody tr td.info-status{
     font-weight: 450;
     line-height: 1.2;
