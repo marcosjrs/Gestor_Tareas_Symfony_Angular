@@ -11,9 +11,6 @@ table tbody tr td.info-status{
     line-height: 1.2;
 }
 
-table tbody tr td a.btn{
-    border-color: transparent;
-}
 
 table tbody tr td.info-status.status-new{
     color: #1e7584;
@@ -26,8 +23,10 @@ table tbody tr td.info-status.status-todo {
 table tbody tr td.info-status.status-finished{
     color:#058e25;
 }
-table tbody tr td .btn-secondary{
-    background-color: #557694;
+
+table tbody tr td.actions a.btn{
+    border-color: transparent;
+    margin-right: 5px;
 }
 
 .navigation-loader{    

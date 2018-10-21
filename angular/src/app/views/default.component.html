@@ -55,7 +55,7 @@
                     <th scope="col">Estado</th>
                     <th scope="col">Titulo</th>
                     <th scope="col">Descripcion</th>
-                    <th scope="col"></th>
+                    <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -64,9 +64,9 @@
                     <td class="info-status" [ngClass]="{'status-todo':task.status=='todo','status-new':task.status=='new','status-finished':task.status=='finished'}">{{ESTADOS[task.status]}}</td>
                     <td><a [routerLink]="['/task', task.id]">{{task.title}}</a></td>
                     <td>{{task.description}}</td>
-                    <td>
+                    <td class="actions">
                         <a href="javascript:void(0)" [routerLink]="['/task-edit', task.id]" class="btn btn-outline-primary"><i
-                                class="fas fa-edit"></i></a>&nbsp;
+                                class="fas fa-edit"></i></a>
                         <a href="javascript:void(0)" class="btn btn-outline-danger" (click)="selectDeleteTask(task.id)"
                             data-toggle="modal" data-target="#exampleModal">
                             <i class="fas fa-trash"></i>
